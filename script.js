@@ -15,12 +15,14 @@ const btnNew = document.querySelector('.btn--new');
 const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
 //^. since it's a class.
+
+//--Starting conditions
 score0El.textContent = 0;
-//^Sets te score to 0
+//^Sets the score to 0
 score1El.textContent = 0;
 diceEl.classList.add('hidden');
 
-const scores = [0, 0];
+let scores = [0, 0];
 //^The players scores are stored in an array.
 //^of player 0, and player 1
 let currentScore = 0;
@@ -28,7 +30,8 @@ let currentScore = 0;
 let activePlayer = 0;
 //player 1 is 0
 let playing = true;
-//This^ is to reset the game when the score limit is reached.
+//This^ is to make it so that you can't press buttons
+// when the score limit is reached.
 
 //Rolling dice functionality
 btnRoll.addEventListener('click', function () {
@@ -112,4 +115,24 @@ btnHold.addEventListener('click', function () {
       player1El.classList.toggle('player--active');
     }
   }
+});
+
+//Step1) Return everything back to normal when game is over.
+//current--1 & scoe--1 need to go back to 0
+//The screen color needs to go from black to pink
+//remove dice
+
+btnNew.addEventListener('click', function () {
+  currentScore = 0;
+  playing = true;
+  scores = [0, 0];
+  player0El.classList.remove('player--winner');
+  player1El.classList.remove('player--winner');
+  player0El.classList.add('player--active');
+  player1El.classList.remove('player--active');
+  score0El.textContent = 0;
+  score1El.textContent = 0;
+  current0El.textContent = 0;
+  current1El.textContent = 0;
+  diceEl.classList.add('hidden');
 });
